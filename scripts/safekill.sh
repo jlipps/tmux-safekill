@@ -14,7 +14,7 @@ function safe_end_procs {
         elif [[ "$pane_proc" == "man" ]] || [[ "$pane_proc" == "less" ]]; then
             cmd='"q"'
         elif [[ "$pane_proc" == "bash" ]] || [[ "$pane_proc" == "zsh" ]]; then
-            cmd='C-c "exit" Enter'
+            cmd='C-c C-u "exit" Enter'
         elif [[ "$pane_proc" == "ssh" ]]; then
             cmd='Enter "~."'
         fi
