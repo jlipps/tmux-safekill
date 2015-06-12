@@ -1,7 +1,7 @@
 tmux-safekill
 =============
 
-A tmux plugin that attempts to safely kill processes before exiting a tmux session. Works with [TMP](https://github.com/tmux-plugins/tmp)
+A tmux plugin that attempts to safely kill processes before exiting a tmux session. Works with [TPM](https://github.com/tmux-plugins/tpm)
 
 ### Usage
 
