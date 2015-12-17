@@ -19,10 +19,7 @@ Warning: this is kind of a big hammer. If you have any sensitive processes, make
 
 Add plugin to the list of TPM plugins in `.tmux.conf`:
 
-    set -g @tpm_plugins "             \
-      tmux-plugins/tpm                \
-      jlipps/tmux-safekill            \
-    "
+    set -g @plugin "jlipps/tmux-safekill"
 
 Hit `prefix + I` to fetch the plugin and source it.
 
