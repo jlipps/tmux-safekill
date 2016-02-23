@@ -26,9 +26,9 @@ function safe_end_procs {
 }
 
 safe_end_tries=0
-while [ $safe_end_tries -lt 3 ]; do
+while [ $safe_end_tries -lt 5 ]; do
     safe_end_procs
     safe_end_tries=$[$safe_end_tries+1]
-    sleep 0.75
+    sleep 0.8
 done
 tmux send-message "Could not end all processes, you're on your own now!"
