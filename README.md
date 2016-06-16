@@ -13,6 +13,12 @@ In tmux, use the command:
 
 The plugin will attempt to recursively end processes it knows about (right now: vim, man, less, bash, zsh, and ssh). It defaults to `Ctrl-C` for processes it doesn't know about. Ultimately, the session should have exited on its own after all child processes are gone.
 
+It is also possible to close only the panes in the current window:
+
+```
+<prefix> Q
+```
+
 Warning: this is kind of a big hammer. If you have any sensitive processes, make sure they are dealt with before running this :-)
 
 ### Installation with [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) (recommended)
