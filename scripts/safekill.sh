@@ -20,23 +20,27 @@ function safe_end_procs {
             cmd='Enter "\q"'
         fi
         echo $cmd | xargs tmux send-keys -t "$pane_id"
+        # echo $pane_set
     done
     IFS="$old_ifs"
 }
 
-safe_end_tries=0
-window_count=$(tmux list-windows | wc -l)
-while [ $safe_end_tries -lt 5 ]; do
-    if [ $1 == "w" ]; then
-       panes=$(tmux list-panes -F "#{pane_id} #{pane_current_command}")
-    else
-       panes=$(tmux list-panes -s -F "#{pane_id} #{pane_current_command}")
-    fi
-    safe_end_procs "$panes"
-    safe_end_tries=$[$safe_end_tries+1]
-    sleep 0.8
-    if [ $1 == "w" ] && [ $window_count -ne $(tmux list-windows | wc -l) ]; then
-       exit 0
-    fi
-done
-tmux send-message "Could not end all processes, you're on your own now!"
+function safe_kill_panes_of_current_session {
+  session_name=$(tmux display-message -p '#S')
+  current_panes=$(tmux list-panes -a -F "#{pane_id} #{pane_current_command} #{session_name}\n" | grep "$session_name") 
+
+  IFS=$'\n'
+  array=($current_panes)
+  # Restore IFS
+  IFS=$SAVEIFS
+  for (( i=0; i<${#array[@]}; i++ ))
+  do
+        # echo "${array[$i]}"
+        safe_end_procs "${array[$i]}"
+        sleep 0.8
+  done
+}
+
+safe_kill_panes_of_current_session
+safe_kill_panes_of_current_session
+exit 0
