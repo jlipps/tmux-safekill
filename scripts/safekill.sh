@@ -16,7 +16,7 @@ function safe_end_procs {
       cmd='C-c C-u space "exit" Enter'
     elif [[ "$pane_proc" == "ssh" ]] || [[ "$pane_proc" == "vagrant" ]]; then
       cmd='Enter "~."'
-    elif [[ "$pane_proc" == "psql" ]]; then
+    elif [[ "$pane_proc" == "psql" ]] || [[ "$pane_proc" == "mysql" ]]; then
       cmd='Enter "\q"'
     fi
     echo $cmd | xargs tmux send-keys -t "$pane_id"
