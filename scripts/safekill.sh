@@ -9,7 +9,7 @@ function safe_end_procs {
     pane_proc=$(echo "$pane_set" | awk -F " " '{print tolower($2)}')
     cmd="C-c"
     if [[ "$pane_proc" == "vim" ]] || [[ "$pane_proc" == "nvim" ]]; then
-      cmd='":qa" Enter'
+      cmd='Escape ":qa!" Enter'
     elif [[ "$pane_proc" == "man" ]] || [[ "$pane_proc" == "less" ]]; then
       cmd='"q"'
     elif [[ "$pane_proc" == "bash" ]] || [[ "$pane_proc" == "zsh" ]] || [[ "$pane_proc" == "fish" ]]; then
