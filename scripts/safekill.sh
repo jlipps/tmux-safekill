@@ -3,7 +3,9 @@ set -e
 
 # non-interactive shell won't source in ~/.bashrc by default
 # use our own bash configuration
-source ~/.bashrc_tmux_safekill
+if [ -f ~/.bashrc_tmux_safekill ]; then
+  source ~/.bashrc_tmux_safekill
+fi
 
 # List of variables interacting with env configurations
 # - 'TMUX_SAFEKILL_FORCE'
