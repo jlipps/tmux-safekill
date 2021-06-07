@@ -46,6 +46,21 @@ Reload TMUX environment:
     # type this in terminal
     $ tmux source-file ~/.tmux.conf
 
+### Configuration
+
+Support the following environment variables which could influence how it proceeds in quiting the processes.
+
+Set it up by creating a new file `~/.bashrc_tmux_safekill` then add the following line per setting you desire to have (you don't have to manually source it,
+it will be automatically picked up internally).
+
+```
+export <CONFIG-NAME>=<VALUE>
+```
+
+wheres you substitue `<CONFIG-NAME>`, and `<VALUE>` according to the following
+
+* `TMUX_SAFEKILL_FORCE` - `1` to attempt quiting processes which support force quit, `0` or other values to just normally quit
+
 ### License
 
 [Apache 2](LICENSE)
