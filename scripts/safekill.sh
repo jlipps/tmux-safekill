@@ -29,6 +29,8 @@ function safe_end_procs {
     cmd="C-c"
     if [[ "$pane_proc" == "vi" ]] || [[ "$pane_proc" == "vim" ]] || [[ "$pane_proc" == "nvim" ]]; then
       cmd=$([[ $envcfg_use_forcequit_approach == 1 ]] && echo 'Escape ":qa!" Enter' || echo 'Escape ":qa" Enter')
+    elif [[ "$pane_proc" == "emacs" ]]; then
+      cmd="C-x C-c"
     elif [[ "$pane_proc" == "man" ]] || [[ "$pane_proc" == "less" ]]; then
       cmd='"q"'
     elif [[ "$pane_proc" == "bash" ]] || [[ "$pane_proc" == "zsh" ]] || [[ "$pane_proc" == "fish" ]]; then
