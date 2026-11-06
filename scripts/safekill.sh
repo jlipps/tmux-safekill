@@ -41,6 +41,8 @@ function safe_end_procs {
       cmd='Enter "\q"'
     elif [[ "$pane_proc" == python* ]]; then
       cmd='C-d'
+    elif [[ "$pane_proc" == "claude" ]]; then
+      cmd="C-c C-c"
     fi
     echo $cmd | xargs tmux send-keys -t "$pane_id"
   done
