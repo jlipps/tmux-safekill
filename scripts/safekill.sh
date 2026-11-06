@@ -42,7 +42,7 @@ function safe_end_procs {
     elif [[ "$pane_proc" == python* ]]; then
       cmd='C-d'
     elif [[ "$pane_proc" == "claude" ]]; then
-      cmd="C-c C-c"
+      cmd="C-c C-c C-c"
     fi
     echo $cmd | xargs tmux send-keys -t "$pane_id"
   done
