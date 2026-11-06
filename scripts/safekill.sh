@@ -41,8 +41,11 @@ function safe_end_procs {
       cmd='Enter "\q"'
     elif [[ "$pane_proc" == python* ]]; then
       cmd='C-d'
-    elif [[ "$pane_proc" == "claude" ]]; then
-      cmd="C-c C-c C-c"
+    elif [[ "$pane_proc" == "claude" ]] || [[ "$pane_proc" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+      # the native claude binary lives at .../claude/versions/<semver>, so tmux
+      # reports pane_current_command as the version number rather than "claude"
+      # C-c interrupts a running turn / clears the prompt, then /exit quits cleanly
+      cmd='C-c "/exit" Enter'
     fi
     echo $cmd | xargs tmux send-keys -t "$pane_id"
   done
